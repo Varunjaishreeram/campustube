@@ -1,0 +1,33 @@
+{% extends 'videos/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+	<!-- Success Login Message -->
+	{% if messages %}
+	<div class="alert alert-success" role="alert">
+		{% for message in messages %}
+		{{ message }}
+		{% endfor %}
+	</div>
+	{% endif %}
+
+	<div class="row">
+		{% for object in object_list %}
+		<div class="col-md-4 mb-4">
+			<div class="card">
+				<a href="{% url 'video-detail' object.pk %}">
+					<img src="/media/{{ object.thumbnail }}" class="card-img-top" alt="{{ object.title }}">
+				</a>
+				<div class="card-body">
+					<a class="link-text" href="{% url 'video-detail' object.pk %}">
+						<h5 class="card-title text-center">{{ object.title }}</h5>
+					</a>
+					<p class="text-muted text-center m-0">{{ object.uploader }}</p>
+					<p class="text-muted text-center">{{ object.date_posted | date:"M d, Y" }}</p>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock content %}
