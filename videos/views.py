@@ -5,6 +5,10 @@ from django.views.generic.list import ListView
 from django.views import View
 from .models import Video, Comment
 from .forms import CommentForm
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from django.contrib import messages
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -83,3 +87,20 @@ class DeleteVideo(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	def test_func(self):
 		video = self.get_object()
 		return self.request.user == video.uploader
+	
+
+@login_required
+
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    
+    if comment.user == request.user:
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully!')
+	
+    return redirect('video-detail', pk=comment.video.pk)
+    
+		
+        
+    
+	

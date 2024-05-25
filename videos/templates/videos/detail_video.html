@@ -1,7 +1,15 @@
 {% extends 'videos/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+
 <div class="container">
+	{% if messages %}
+	<div class="alert alert-success" role="alert">
+		{% for message in messages %}
+		{{ message }}
+		{% endfor %}
+	</div>
+	{% endif %}
 	<div class="row mt-5">
 		<div class="col-md-8 col-sm-12 col-xs-12">
 			<video-js width="720" height="405" controls data-setup='{"playbackRates": [0.5, 1, 1.5, 2], "fluid": true}'>
@@ -85,6 +93,11 @@
 				<div class="col-md-8 col-sm-12 border-bottom">
 					<h5>{{ comment.user }} says:</h5>
 					<p>{{ comment.comment }}</p>
+					{% if user.is_authenticated and comment.user == user %}
+					<a href="{% url 'delete-comment' comment.pk %}">Delete</a>
+					{% endif %}
+
+
 				</div>
 			</div>
 			{% endfor %}
