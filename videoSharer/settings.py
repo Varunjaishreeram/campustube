@@ -40,12 +40,14 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
+    # Project App
     'videos',
+    'profiles',
+    # Bootstrap forms apps
     "crispy_forms",
     "crispy_bootstrap5",
-
     'django.contrib.sites',
-     'profiles',
+    # Django authentication apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -100,7 +102,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -138,16 +139,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 
 # Media Files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# Django Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# Email
+# Email take to the backend(Allauth)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Sign In Redirect
