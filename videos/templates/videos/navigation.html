@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-blue nav-color">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'index' %}">Navbar</a>
+    <a class="navbar-brand" href="{% url 'index' %}">Campus Tube</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,6 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       </ul>
       <ul class="navbar-nav">
-        {{user}}
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'video-create' %}">Upload Video</a>
@@ -22,6 +21,7 @@
           <a class="nav-link" href="{% url 'profile' user.profile.pk %}"><img src="{{ user.profile.image.url }}"
               width="35" height="35" class="d-inline-block rounded-circle" alt="Profile"></a>
         </li>
+
         {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'account_signup' %}">Register</a>

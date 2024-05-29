@@ -10,8 +10,6 @@ class CustomAuthenticationForm(AuthenticationForm):
 
 
 class CommentForm(forms.Form):
-    comment = forms.CharField(widget=forms.Textarea(
-        attrs={
-            "class": "form-control",
-            "placeholder": "Leave a Comment!"
-        }))
+    comment = forms.CharField(widget=forms.Textarea(attrs={
+        'rows':'1','placeholder':'add a comment'
+    }))

@@ -5,11 +5,9 @@
     <div class="row justify-content-center mt-5">
         <div class="card col-md-6 col-sm-12 col-xs-12 d-flex flex-row align-items-center p-3 shadow">
             <img class="rounded-circle mr-4" height="150" width="150" src="{{ profile.image.url }}">
-            <h1>{{ profile.user.username }}</h1>
+            <h1>{{ profile.user.username }} <a href="{% url 'update-profile' user.profile.pk%}"><i class="fas fa-edit"></i></a></h1>
         </div>
     </div>
-
-    <a href="{% url 'update-profile' user.profile.pk%}">Update Profile</a>
 
     <div class="row justify-content-center mt-5">
         <div class="card col-md-6 col-sm-12 col-xs-12 p-3 shadow">
